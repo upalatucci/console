@@ -111,6 +111,7 @@ export enum ByteDataTypes {
 
 export type UtilizationItemProps = {
   title: string;
+  TitleComponent?: React.ComponentType;
   utilization?: PrometheusResponse;
   limit?: PrometheusResponse;
   requested?: PrometheusResponse;

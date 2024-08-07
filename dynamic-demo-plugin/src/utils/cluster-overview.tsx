@@ -1,4 +1,7 @@
+import * as React from 'react';
 import { GetMultilineQueries, GetQuery, Humanize } from '@openshift-console/dynamic-plugin-sdk';
+import { Popover, PopoverPosition } from '@patternfly/react-core';
+import { HelpIcon } from '@patternfly/react-icons/dist/esm/icons/help-icon';
 
 export const getUtilizationQuery: GetQuery = (nodeTypes) =>
   `
@@ -17,32 +20,47 @@ export const getUtilizationQuery: GetQuery = (nodeTypes) =>
 
 export const getUtilizationQueries: GetMultilineQueries = (nodeTypes) => [
   {
-    query: 
-      `
+    query: `
         sum(
           instance:node_network_receive_bytes_excluding_lo:rate1m
           *
           on(instance) group_left(role) (
-            label_replace(max by (node) (kube_node_role{role=~"${nodeTypes?.length ? nodeTypes.join('|') : '.+'}"}), "instance", "$1", "node", "(.*)")
+            label_replace(max by (node) (kube_node_role{role=~"${
+              nodeTypes?.length ? nodeTypes.join('|') : '.+'
+            }"}), "instance", "$1", "node", "(.*)")
           )
         )
       `,
     desc: 'desc1',
   },
   {
-    query:
-      `
+    query: `
         sum(
           instance:node_network_transmit_bytes_excluding_lo:rate1m
           *
           on(instance) group_left(role) (
-            label_replace(max by (node) (kube_node_role{role=~"${nodeTypes?.length ? nodeTypes.join('|') : '.+'}"}), "instance", "$1", "node", "(.*)")
+            label_replace(max by (node) (kube_node_role{role=~"${
+              nodeTypes?.length ? nodeTypes.join('|') : '.+'
+            }"}), "instance", "$1", "node", "(.*)")
           )
         )
       `,
     desc: 'desc2',
   },
 ];
+
+export const TitleComponent = () => (
+  <div>
+    Test{' '}
+    <Popover
+      position={PopoverPosition.top}
+      headerContent="Test with popup"
+      bodyContent={<>This is a test</>}
+    >
+      <HelpIcon />
+    </Popover>
+  </div>
+);
 
 export const humanize: Humanize = (val) => {
   const value = Number.parseInt(`${val}`);

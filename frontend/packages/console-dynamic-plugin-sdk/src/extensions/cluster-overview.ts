@@ -21,6 +21,7 @@ export type ClusterOverviewUtilizationItem = ExtensionDeclaration<
   {
     /** The title of the utilization item. */
     title: string;
+    TitleComponent?: CodeRef<React.ComponentType>;
     /** Prometheus utilization query. */
     getUtilizationQuery: CodeRef<GetQuery>;
     /** Convert prometheus data to human readable form. */

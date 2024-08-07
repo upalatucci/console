@@ -149,6 +149,7 @@ export const trimSecondsXMutator = (x) => {
 export const UtilizationItem: React.FC<UtilizationItemProps> = React.memo(
   ({
     title,
+    TitleComponent,
     utilization,
     humanizeValue,
     isLoading = false,
@@ -256,7 +257,7 @@ export const UtilizationItem: React.FC<UtilizationItemProps> = React.memo(
           >
             <FlexItem>
               <h4 className="pf-v5-c-title pf-m-md" data-test="utilization-item-title">
-                {title}
+                {TitleComponent ? <TitleComponent /> : title}
               </h4>
             </FlexItem>
             <FlexItem>

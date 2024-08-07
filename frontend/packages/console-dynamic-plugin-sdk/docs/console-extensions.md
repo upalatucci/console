@@ -287,7 +287,7 @@ Adds a new cluster overview utilization item.
 
 | Name | Value Type | Optional | Description |
 | ---- | ---------- | -------- | ----------- |
-| `title` | `string` | no | The title of the utilization item. |
+| `title` | `string \| CodeRef<React.ComponentType<{}>>` | no | The title of the utilization item. |
 | `getUtilizationQuery` | `CodeRef<GetQuery>` | no | Prometheus utilization query. |
 | `humanize` | `CodeRef<Humanize>` | no | Convert prometheus data to human readable form. |
 | `getTotalQuery` | `CodeRef<GetQuery>` | yes | Prometheus total query. |

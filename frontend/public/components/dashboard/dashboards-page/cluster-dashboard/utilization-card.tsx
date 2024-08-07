@@ -65,6 +65,7 @@ export const PrometheusUtilizationItem = withDashboardResources<PrometheusUtiliz
     utilizationQuery,
     totalQuery,
     title,
+    TitleComponent,
     TopConsumerPopover,
     humanizeValue,
     byteDataType,
@@ -128,6 +129,7 @@ export const PrometheusUtilizationItem = withDashboardResources<PrometheusUtiliz
     return (
       <UtilizationItem
         title={title}
+        TitleComponent={TitleComponent}
         utilization={utilization}
         limit={limit}
         requested={request}
@@ -360,6 +362,7 @@ export const UtilizationCard = () => {
               <PrometheusUtilizationItem
                 key={uid}
                 title={properties.title}
+                TitleComponent={properties.TitleComponent}
                 utilizationQuery={properties.getUtilizationQuery(selectedNodes)}
                 totalQuery={properties.getTotalQuery?.(selectedNodes)}
                 humanizeValue={properties.humanize}
@@ -386,6 +389,7 @@ export const UtilizationCard = () => {
 
 type PrometheusCommonProps = {
   title: string;
+  TitleComponent?: React.ComponentType;
   humanizeValue: Humanize;
   byteDataType?: ByteDataTypes;
   namespace?: string;
